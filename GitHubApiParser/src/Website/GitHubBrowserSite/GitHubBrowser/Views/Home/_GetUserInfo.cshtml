@@ -1,0 +1,20 @@
+﻿@using GithubApi.Models
+@model GitHubUser
+@{
+    var repos = Model.MostPopular(5);
+}
+<p><span class="label label-default">Name:</span>@Model.Name</p>
+<p><span class="label label-default">Location:</span>@Model.Location</p>
+<p><span class="label label-default">Avatar Url:</span>@Model.AvatarUrl</p>
+@{
+    if (repos.Any())
+    {
+        <p><span class="label label-default">Users Repos:</span></p>
+        <ul>
+            @foreach (var repo in repos)
+            {
+                <li>@repo.FullName - @repo.StargazersCount</li>
+            }
+        </ul>
+    }
+}
